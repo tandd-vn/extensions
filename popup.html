@@ -3,107 +3,81 @@
 <meta charset="UTF -8">
 <style>
 
-    .md-select {
-        position: relative;
-        max-width: 200px;
-        margin-bottom: 10px;
-    }
-    .md-select *, .md-select :after, .md-select :before {
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-    .md-select [type=button] {
-        background: #fff;
-        border-color: rgba(0, 0, 0, 0.12);
-        border-width: 0 0 1px 0;
-        color: rgba(0, 0, 0, 0.73);
-        cursor: default;
-        display: block;
-        line-height: 30px;
-        padding: 2px 0 1px 0px;
-        position: relative;
-        text-align: left;
-        text-shadow: none;
-        width: 100%;
-        z-index: 1;
-        outline: none;
-        overflow: hidden;
-    }
-    .md-select [type=button]:focus, .md-select [type=button]:hover {
-        background: rgba(0, 0, 0, 0.1);
-    }
-    .md-select [type=button]:after {
-        content: '\25be';
-        float: right;
-        padding-right: 16px;
-    }
-    .md-select ul[role=listbox] {
-        background-color: white;
-        cursor: default;
-        list-style: none;
-        line-height: 26px;
-        overflow: hidden;
-        margin: 0;
-        max-height: 0;
-        position: absolute;
-        padding: 0;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        -webkit-transition: all 0.15s cubic-bezier(0.35, 0, 0.25, 1);
-        transition: all 0.15s cubic-bezier(0.35, 0, 0.25, 1);
-        width: 100%;
-        -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
-    }
-    .md-select ul[role=listbox] li {
-        height: 30px;
-        margin: 0;
-        padding: 2px 5px;
-        outline: none;
-        overflow: hidden;
-    }
-    .md-select ul[role=listbox] li:focus, .md-select ul[role=listbox] li:hover, .md-select ul[role=listbox] li.active {
-        background: rgba(0, 0, 0, 0.1);
-    }
-    .md-select.active ul {
-        max-height: 200px;
-        overflow: auto;
-        padding: 8px 0 16px 0px;
-        z-index: 2;
-        -webkit-transition: all 0.2s ease;
-        transition: all 0.2s ease;
-    }
+	body{
+
+	}
+
+	#content{
+		border: 2px dotted #A53400;
+	}
+
+	select#list-email {
+		-webkit-appearance: button;
+		-webkit-border-radius: 0px;
+		-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+		-webkit-padding-end: 20px;
+		-webkit-padding-start: 2px;
+		-webkit-user-select: none;
+		background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#A53400, #A53400 40%, #A53400);
+		background-position: 97% center;
+		background-repeat: no-repeat;
+		border:none;
+		color: #555;
+		overflow: hidden;
+		padding: 5px 10px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 232px;
+		outline: none;
+	}
+
+	select#list-email {
+		color: #fff;
+		background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#A53400, #A53400 40%,#A53400);
+		background-color: #A53400;
+		margin: 5px;
+	}
 
     .btn {
 		background-color: #A53400;
 		color: #FFF;
 		border:none;
-		min-width: 100%;
-		font-size:13px;
+		min-width: 94%;
 		padding: 5px 10px;
+		width: 94%;
+		outline: none;
+		margin: 5px;
+		cursor: pointer;
 	}
-
+	.txt-pass{
+		color: #FFF;
+		background-color: #A53400;
+		border: none;
+		padding: 5px;
+		width: 222px;
+		outline: none;
+		margin: 5px;
+	}
+	h4{
+		text-align: center;
+		color: #A53400;
+		border: 1px double #A53400;
+		padding: 5px ;
+		width: 220px;
+		margin: 5px;
+	}
 
 </style>
 <script src="js/jquery.js"></script>
 <script src="js/popup.js"></script>
 <body style="width:250px">
-
-
-<div class="md-select">
-
-	<label for="ul-id"><button type="button" class="ng-binding">State 2</button></label>
-	<ul role="listbox" id="ul-id" class="md-whiteframe-z1" aria-activedescendant="state2_AK" name="ul-id">
-		<li role="option" id="state2_AK" class="ng-binding ng-scope active" tabindex="-1" aria-selected="true">Alaska</li>
-		<li role="option" id="state2_AK" class="ng-binding ng-scope active" tabindex="-1" aria-selected="true">Alaska</li>
-		<li role="option" id="state2_AL" class="ng-binding ng-scope" tabindex="-1" aria-selected="false">Alabama</li>
-		<li role="option" id="state2_AR" class="ng-binding ng-scope" tabindex="-1" aria-selected="false">Arkansas</li>
-	</ul>
-
-</div>
-
-
-
+<div id="content">
+	<h4>Choose an account to auto run</h4>
+	<select id="list-email">
+		<option value="">Select an Email</option>
+	</select>
+	<input type="password" name="password" value="Tandd0607" class="txt-pass">
 	<button class="btn" id="submit-btn">Start</button>
+</div>
 </body>
 </html>

@@ -1,31 +1,35 @@
 {
-  // Required
   "manifest_version": 2,
   "name": "Auto Claim Bitcoin",
   "version": "1.0",
-
-  // Recommended
-    "description": "Auto Claim Bitcoin",
-	"icons": { "16": "ico.png",
-	   "48": "ico.png",
-	  "128": "ico.png" 
+  "description": "Auto Claim Bitcoin",
+  "icons": {
+    "16": "ico.png",
+    "48": "ico.png",
+    "128": "ico.png"
   },
-
-  // Optional
   "author": "Tandd",
-	"browser_action": {
-	  "default_icon": {                    // optional
-		"16": "ico.png",           // optional
-		"24": "ico.png",           // optional
-		"32": "ico.png"            // optional
-	  },
-	  "default_title": "Auto Claim Bitcoin",      // optional; shown in tooltip
-	  "default_popup": "popup.html"        // optional
-	},
-	"content_scripts": [
-		{
-			"matches": ["*://*.earnstations.com/*","*://*.makearn.com/*"],
-			"js": ["js/jquery.js", "js/content.js"]
-		}
-	]
+  "browser_action": {
+    "default_icon": {
+      "16": "ico.png",
+      "24": "ico.png",
+      "32": "ico.png"
+    },
+    "default_title": "Auto Claim Bitcoin",
+    "default_popup": "popup.html",
+    "permission": []
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.earnstations.com/*",
+        "*://*.makearn.com/*"
+      ],
+      "js": [
+        "js/jquery.js",
+        "js/content.js",
+        "js/done.js"
+      ]
+    }
+  ]
 }

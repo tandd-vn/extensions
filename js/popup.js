@@ -1,30 +1,8 @@
-$(document).ready(function () {
-
-    $('.md-select').on('click', function () {
-        $(this).toggleClass('active');
-    });
-
-    $('.md-select ul li').on('click', function () {
-        var v = $(this).text();
-        $('.md-select ul li').not($(this)).removeClass('active');
-        $(this).addClass('active');
-        $('.md-select label button').text(v);
-    });
-
-
-    $("#submit-btn").click(start);
-})
-
-
-
-// start();
-
-
-
-
-
 var listEmail = [
     'tandd.dev@gmail.com',
+    'tandddev@gmail.com',
+    'tan.dddev@gmail.com',
+    'tan.dd.dev@gmail.com',
     'throne.rush.dt01@gmail.com',
     'throne.rush.dt03@gmail.com',
     'throne.rush.dt04@gmail.com',
@@ -40,16 +18,23 @@ var listEmail = [
     'thronerushdt06@gmail.com',
     'thronerushdt07@gmail.com',
     'thronerushdt08@gmail.com',
-    'thronerushdt09@gmail.com',
-    'tandddev@gmail.com',
-    'tan.dddev@gmail.com',
-    'tan.dd.dev@gmail.com'
+    'thronerushdt09@gmail.com'
 ]
+
+$(document).ready(function () {
+    $("#submit-btn").click(start);
+    $.each(listEmail,function (index, value) {
+        $('#list-email').append('<option value="'+value+'">'+value+'</option>');
+    })
+})
+
 
 
 function start(){
+    var email = $('#list-email').val();
+    var pass = $( "input[name='password']" ).val();
     chrome.tabs.query({active:true,currentWindow:true},function(tabs){
-        chrome.tabs.sendMessage(tabs[0].id,{start:true},function (response) {
+        chrome.tabs.sendMessage(tabs[0].id,{start:true,email:email,pass:pass},function (response) {
 
         })
     })
