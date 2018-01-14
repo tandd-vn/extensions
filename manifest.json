@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Auto Claim Bitcoin",
-  "version": "1.0",
+  "name": "Tandd",
+  "version": "3.1",
   "description": "Auto Claim Bitcoin",
   "icons": {
     "16": "ico.png",
@@ -15,7 +15,7 @@
       "24": "ico.png",
       "32": "ico.png"
     },
-    "default_title": "Auto Claim Bitcoin",
+    "default_title": "Tandd",
     "default_popup": "popup.html",
     "permission": []
   },
@@ -27,8 +27,7 @@
       ],
       "js": [
         "js/jquery.js",
-        "js/content.js",
-        "js/done.js"
+        "js/content.js"
       ]
     }
   ]
