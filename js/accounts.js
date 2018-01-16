@@ -2,8 +2,9 @@ var accounts = [
 
     /*tandd.dev@gmail.com - 15153822756626*/
 
-    // ['tandd.dev@gmail.com', 'Tandd0607'],
-    // ['tandddev@gmail.com', 'Tandd0607'],
+     ['tandd.dev@gmail.com', 'Tandd0607'],
+     ['dfjgvfdgdf@gmail.com', '123456'],
+     ['tandddev@gmail.com', 'Tandd0607'],
     // ['tan.dddev@gmail.com', 'Tandd0607'],
     // ['tan.dd.dev@gmail.com', 'Tandd0607'],
     // ['throne.rush.dt01@gmail.com', 'Tandd0607'],

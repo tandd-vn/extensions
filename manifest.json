@@ -28,7 +28,7 @@
       "js": [
         "js/jquery.js",
         "js/accounts.js",
-        "js/content.js"
+        "js/content_dev.js"
       ]
     }
   ]

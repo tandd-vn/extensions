@@ -1,7 +1,7 @@
 $(document).ready(function () {
     setTimeout(function() {
         start();
-    }, 300);
+    }, 3000);
     $("#submit-btn").click(run);
 })
 function start(){
