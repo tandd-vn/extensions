@@ -95,35 +95,6 @@ day = date.getHours() >= 12 ? date.getDate() : (date.getDate() - 1);
 var today = monthNames[date.getMonth()] + '_' + date.getFullYear() + '_' + day + '_45775';
 var base_url = currentSite == "M" ? "http://www.makearn.com/" : "https://www.earnstations.com/";
 
-// var accounts = [
-//     ['tandd.dev@gmail.com', 'Tandd0607'],
-//     ['tandddev@gmail.com', 'Tandd0607'],
-//     ['tan.dddev@gmail.com', 'Tandd0607'],
-//     ['tan.dd.dev@gmail.com', 'Tandd0607'],
-//     ['throne.rush.dt01@gmail.com', 'Tandd0607'],
-//     ['throne.rush.dt03@gmail.com', 'Tandd0607'],
-//     ['throne.rush.dt04@gmail.com', 'Tandd0607'],
-//     ['throne.rush.dt05@gmail.com', 'Tandd0607'],
-//     ['throne.rush.dt06@gmail.com', 'Tandd0607'],
-//     ['throne.rush.dt07@gmail.com', 'Tandd0607'],
-//     ['throne.rush.dt08@gmail.com', 'Tandd0607'],
-//     ['throne.rush.dt09@gmail.com', 'Tandd0607'],
-//     ['thronerushdt01@gmail.com', 'Tandd0607'],
-//     ['thronerushdt03@gmail.com', 'Tandd0607'],
-//     ['thronerushdt04@gmail.com', 'Tandd0607'],
-//     ['thronerushdt05@gmail.com', 'Tandd0607'],
-//     ['thronerushdt06@gmail.com', 'Tandd0607'],
-//     ['thronerushdt07@gmail.com', 'Tandd0607'],
-//     ['thronerushdt08@gmail.com', 'Tandd0607'],
-//     ['thronerushdt09@gmail.com', 'Tandd0607']
-// ];
-var accounts = [
-    ["kuhocoxoru@69postix.info","123456"],
-    ["wiyedi@69postix.info","123456"],
-    ["jugoso@20boxme.org","123456"]
-
-]
-
 localStorage.getItem("isRun") ? localStorage.getItem("isRun") : localStorage.setItem("isRun", false);
 
 $(document).ready(function () {
@@ -132,7 +103,9 @@ $(document).ready(function () {
             if(localStorage.getItem("today") == today){
                 var indexToRun = localStorage.getItem("indexRuned")?parseInt(localStorage.getItem("indexRuned"))+1:0;
                 if(indexToRun > accounts.length-1){
-                    alert('Done all account');
+                    window.setInterval(function(){
+                        swal("Success","List Error: "+accounts[localStorage.getItem("listAccountErr")],"success");
+                    }, 3000);
                 }else{
                     $("input[name='login_email']").val(accounts[indexToRun][0]);
                     $("input[name='login_password']").val(accounts[indexToRun][1]);
@@ -174,16 +147,6 @@ $(document).ready(function () {
                     total++;
                     if(total >= 20){
                         if(localStorage.getItem("indexRuning") != localStorage.getItem("indexRuned")){
-                            if(localStorage.getItem("listAccountDone")){
-                                var listAccountDone = JSON.parse(localStorage.getItem("listAccountDone"));
-                                var index=  listAccountDone?listAccountDone.length:0;
-                                listAccountDone[index] = accounts[localStorage.getItem("indexRuning")];
-                                localStorage.setItem("listAccountDone", JSON.stringify(listAccountDone));
-                            }else{
-                                var listAccountDone = [];
-                                listAccountDone[0] = accounts[localStorage.getItem("indexRuning")];
-                                localStorage.setItem("listAccountDone", JSON.stringify(listAccountDone));
-                            }
                             localStorage.setItem("indexRuned",localStorage.getItem("indexRuning"));
                         }else{
                             setTimeout(function() {
@@ -197,6 +160,7 @@ $(document).ready(function () {
             if (currentUrl.indexOf('user/welcome') >= 0) {
                 $.get("videos/today_videos", function (data) {
                     data = jQuery.parseJSON(data).data.videos;
+                    var total = 1;
                     $.each(data, function (index, value) {
                         var _0x6b45x19 = new FormData;
                         _0x6b45x19[_0xa438[44]](_0xa438[43], value.video_id);
@@ -212,6 +176,16 @@ $(document).ready(function () {
                                 }
                             }
                         });
+                        total++;
+                        if(total >= 20){
+                            if(localStorage.getItem("indexRuning") != localStorage.getItem("indexRuned")){
+                                localStorage.setItem("indexRuned",localStorage.getItem("indexRuning"));
+                            }else{
+                                setTimeout(function() {
+                                    window.location = 'http://www.makearn.com/home/logout';
+                                }, 6000);
+                            }
+                        }
                     })
                 });
             }
@@ -221,9 +195,40 @@ $(document).ready(function () {
     }
 })
 
+function addAccountToListError(account){
+    if(localStorage.getItem("indexRuning") != 0){
+        var listAccountErr = JSON.parse(localStorage.getItem("listAccountErr"));
+        var index=  listAccountErr?listAccountErr.length:0;
+        listAccountErr[index] = account;
+        localStorage.setItem("listAccountErr", JSON.stringify(listAccountErr));
+    }else{
+        var listAccountErr = [];
+        listAccountErr[0] = account;
+        localStorage.setItem("listAccountErr", JSON.stringify(listAccountErr));
+    }
+}
+
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.start == true) {
-        sendResponse({message: accounts[localStorage.getItem("indexRuning")][0] +" ("+localStorage.getItem("indexRuning")+"/"+accounts.length+")"});
+        var status = localStorage.getItem("isRun") == 'true'?'Stop':'Start';
+        sendResponse({
+                message: accounts[localStorage.getItem("indexRuning")][0] +" ("+parseInt(localStorage.getItem("indexRuning"))+1+"/"+accounts.length+")",
+                status:status
+            });
+    }
+    if(request.isRun == true){
+        var status = null;
+        if (localStorage.getItem("isRun") == 'true') {
+            localStorage.setItem("isRun",false);
+            status = 'Start';
+        }else{
+            localStorage.setItem("isRun",true);
+            location.reload();
+            status = 'Stop';
+        }
+        sendResponse({
+            status:status
+        });
     }
 })
 
@@ -272,6 +277,7 @@ function sendFormData(_0x45b6x17, _0x45b6x1f) {
         contentType: false,
         processData: false,
         error: function (_0x45b6xc, _0x45b6xd, _0x45b6xe) {
+            addAccountToListError(accounts[localStorage.getItem("indexRuning")]);
             //alert(_0x45b6xc[_0x45f2[17]]);
             if (typeof _0x45b6x17[_0x45f2[26]] != _0x45f2[22]) {
                 $(_0x45b6x17[_0x45f2[26]])[_0x45f2[27]]();
